@@ -1,12 +1,28 @@
 @import url(./reset.css);
 
-*, *::after, ::before {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+*,
+*::after,
+::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    font-size: 16px;
-    font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  font-family: "Montserrat", sans-serif;
+}
+
+:root {
+  --bg-color: whitesmoke;
+}
+
+.dark-mode {
+  --bg-color: black;
+}
+
+.wrapper {
+  min-height: 100vh;
+  display: flex;
+  background-color: var(--bg-color);
 }
