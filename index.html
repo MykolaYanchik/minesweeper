@@ -29,10 +29,6 @@
     <div class="wrapper">
       <header class="header">
         <h1 class="header__title">Minesweeper</h1>
-        <label class="switcher">
-          <input type="checkbox" onchange="themeToggler()" />
-          <div class="slider"></div>
-        </label>
       </header>
       <div class="game-container">
         <div class="select-level" id="selectLevel">
@@ -50,6 +46,9 @@
           </button>
         </div>
         <div class="board" id="board"></div>
+        <div class="modal" id="loseModal">
+          <h2 class="modal-title">You lose</h2>
+        </div>
       </div>
     </div>
   </body>

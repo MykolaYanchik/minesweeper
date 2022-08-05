@@ -22,7 +22,7 @@ const levels = {
 class Game {
   constructor(level) {
     this.matrix = this.getMatrix(level);
-    this.getMine(level, this.matrix);
+    this.mines = this.getMine(level, this.matrix);
     this.createBoard(level, this.matrix);
   }
 
@@ -76,14 +76,17 @@ class Game {
   }
 
   getMine(level, matrix) {
+    const mines = [];
     for (let i = 0; i < level.mines; i++) {
       const cell = this.getFreeCell(matrix);
       cell.mine = true;
+      mines.push(cell);
       let cells = this.getAroundCell(matrix, cell.x, cell.y);
       for (let c of cells) {
         c.number += 1;
       }
     }
+    return mines;
   }
 
   getZeroCell(matrix, x, y) {
@@ -141,6 +144,7 @@ class Game {
     el.classList.add("show-cell");
     if (cell.mine) {
       el.classList.add("cell-bomb");
+      this.loseGame(this.mines);
     }
     if (cell.number > 0 && !cell.mine) {
       el.textContent = cell.number;
@@ -160,6 +164,19 @@ class Game {
     } else {
       cell.flag = true;
       el.classList.add("cell-flag");
+    }
+  }
+
+  loseGame(mines) {
+    for (let i = 0; i < mines.length; i++) {
+      setTimeout(() => {
+        const el = document.getElementById(mines[i].id);
+        el.classList.add("cell-bomb__end");
+        el.classList.remove("cell-flag");
+        if (i === mines.length - 1) {
+          document.getElementById("loseModal").style.display = "flex";
+        }
+      }, i * 100);
     }
   }
 }

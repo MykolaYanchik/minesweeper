@@ -14,15 +14,10 @@ body {
 }
 
 :root {
-  --bg-color: rgba(189, 189, 189, 0.623);
+  --bg-color: rgb(255, 255, 255);
   --black: rgb(1, 4, 41);
   --grey: rgba(182, 182, 182, 0.918);
-  --text-color: rgb(49, 49, 49);
-}
-
-.dark-mode {
-  --bg-color: rgba(4, 15, 0, 0.959);
-  --text-color: rgba(243, 243, 243, 0.842);
+  --text-color: rgb(0, 4, 61);
 }
 
 .wrapper {

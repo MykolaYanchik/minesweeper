@@ -4,6 +4,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  border: 2px solid var(--grey);
+  border-radius: 0 0 0.5rem 0.5rem;
+  position: relative;
 }
 
 .select-level {
@@ -52,6 +55,7 @@
   background-position: center;
   background-size: 90%;
   background-repeat: no-repeat;
+  transition: 0.5s;
 }
 
 .board__row:nth-child(odd) > .board__cell:nth-child(odd) {
@@ -70,9 +74,14 @@
   background-color: rgba(245, 245, 52, 0.705);
 }
 
-.cell-bomb {
+.cell-bomb,
+.cell-bomb__end {
   background-image: url("../assets/bomb.png");
-  background-color: whitesmoke !important;
+  background-color: rgb(233, 39, 175) !important;
+}
+
+.cell-bomb__end {
+  animation: scale 0.5s linear;
 }
 
 .cell-flag {
@@ -80,5 +89,14 @@
 }
 
 .show-cell {
-  background-color: rgba(245, 245, 52, 0.486);
+  background-color: rgba(245, 245, 52, 0.6);
+}
+
+@keyframes scale {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

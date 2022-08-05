@@ -3,7 +3,10 @@
   width: 100%;
   align-items: center;
   justify-content: space-between;
-  padding: 0.5rem 0;
+  padding: 1rem;
+  border: 2px solid var(--grey);
+  border-bottom: none;
+  border-radius: 0.5rem 0.5rem 0 0;
 }
 
 .header__title {
