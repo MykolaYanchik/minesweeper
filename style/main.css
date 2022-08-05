@@ -1,0 +1,38 @@
+*,
+*::after,
+::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 16px;
+  font-family: "Montserrat", sans-serif;
+  background-color: var(--bg-color);
+  font-weight: 200;
+}
+
+:root {
+  --bg-color: rgba(189, 189, 189, 0.623);
+  --black: rgb(1, 4, 41);
+  --grey: rgba(182, 182, 182, 0.918);
+  --text-color: rgb(49, 49, 49);
+}
+
+.dark-mode {
+  --bg-color: rgba(4, 15, 0, 0.959);
+  --text-color: rgba(243, 243, 243, 0.842);
+}
+
+.wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0 1rem;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+}

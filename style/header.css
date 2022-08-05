@@ -1,0 +1,15 @@
+.header {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+}
+
+.header__title {
+  text-transform: uppercase;
+  font-weight: 400;
+  font-size: 1.25rem;
+  color: var(--text-color);
+  margin-right: 0.375rem;
+}

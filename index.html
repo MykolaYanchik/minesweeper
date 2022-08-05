@@ -20,17 +20,39 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;700&display=swap"
       rel="stylesheet"
     />
     <title>Minesweeper</title>
   </head>
   <body>
     <div class="wrapper">
-      <label>
-        <input type="checkbox" onchange="themeToggler()"/>
-      </label>
+      <header class="header">
+        <h1 class="header__title">Minesweeper</h1>
+        <label class="switcher">
+          <input type="checkbox" onchange="themeToggler()" />
+          <div class="slider"></div>
+        </label>
+      </header>
+      <div class="game-container">
+        <div class="select-level" id="selectLevel">
+          <button class="level-button" onclick="selectLevel('easy')">
+            <span>8 * 8</span>
+            <span>10 mines</span>
+          </button>
+          <button class="level-button" onclick="selectLevel('medium')">
+            <span>16 * 16</span>
+            <span>40 mines</span>
+          </button>
+          <button class="level-button" onclick="selectLevel('hard')">
+            <span>30 * 16</span>
+            <span>75 mines</span>
+          </button>
+        </div>
+        <div class="board" id="board"></div>
+      </div>
     </div>
   </body>
   <script src="./scripts/index.js"></script>
+  <script src="./scripts/game.js"></script>
 </html>
