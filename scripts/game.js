@@ -148,7 +148,7 @@ class Game {
   }
 
   showCellTouch(cell, matrix) {
-    if(cell.show) return;
+    if (cell.show) return;
     const el = document.getElementById(cell.id);
     el.classList.add("pulse");
     const btn = document.createElement("div");
@@ -167,16 +167,17 @@ class Game {
     }
     el.appendChild(btn);
     el.appendChild(btnFlag);
-    btn.addEventListener("touchstart", () => {
+
+    btn.onclick = () => {
       el.classList.remove("pulse");
       el.innerHTML = "";
       this.showCell(cell, matrix);
-    });
-    btnFlag.addEventListener("touchstart", () => {
+    };
+    btnFlag.onclick = () => {
       el.classList.remove("pulse");
       el.innerHTML = "";
       this.setFlag(cell);
-    });
+    };
   }
 
   showCell(cell, matrix) {
