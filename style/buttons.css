@@ -20,11 +20,3 @@
   cursor: pointer;
   position: relative;
 }
-
-.level-button:first-of-type {
-  top: -4rem;
-}
-
-.level-button:last-of-type {
-  top: 4rem;
-}

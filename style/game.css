@@ -1,5 +1,4 @@
 .game-container {
-  height: 760px;
   width: 100%;
   display: flex;
   align-items: center;
@@ -13,6 +12,7 @@
   width: 100%;
   height: 100%;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 }
@@ -163,7 +163,7 @@
     border-color: orange;
   }
   50% {
-    opacity: .8;
+    opacity: 0.8;
     background-color: orange;
     border-color: red;
   }
@@ -181,12 +181,13 @@
   display: block;
 }
 
-.touch-button, .touch-button-flag {
+.touch-button,
+.touch-button-flag {
   position: absolute;
   width: 100%;
   height: 100%;
   background-color: white;
-  border-radius: .25rem;
+  border-radius: 0.25rem;
   animation: none;
   background-size: 100%;
   background-position: center;
@@ -197,43 +198,43 @@
 }
 
 .touch-button {
-  left: calc(-100% - .5rem);
-  bottom: .5rem;
+  left: calc(-100% - 0.5rem);
+  bottom: 0.5rem;
   background-image: url("../assets/shovel.png");
 }
 
 .touch-button-flag {
-  left: -.5rem;
-  bottom: calc((100% + .5rem));
+  left: -0.5rem;
+  bottom: calc((100% + 0.5rem));
   background-image: url("../assets/flag.png");
 }
 
 .touch-button__bottom {
-  left: calc(100% + .5rem);
-  bottom: -.5rem;
+  left: calc(100% + 0.5rem);
+  bottom: -0.5rem;
 }
 
 .touch-button-flag__bottom {
-  left: .5rem;
-  bottom: calc((-100% - .5rem));
+  left: 0.5rem;
+  bottom: calc((-100% - 0.5rem));
 }
 
 .touch-button__right {
-  left: calc(-100% - .5rem);
-  bottom: -.5rem;
+  left: calc(-100% - 0.5rem);
+  bottom: -0.5rem;
 }
 
 .touch-button-flag__right {
-  left: -.5rem;
-  bottom: calc((-100% - .5rem));
+  left: -0.5rem;
+  bottom: calc((-100% - 0.5rem));
 }
 
 .touch-button__left {
-  left: calc(100% + .5rem);
-  bottom: .5rem;
+  left: calc(100% + 0.5rem);
+  bottom: 0.5rem;
 }
 
 .touch-button-flag__left {
-  left: .5rem;
-  bottom: calc((100% + .5rem));
+  left: 0.5rem;
+  bottom: calc((100% + 0.5rem));
 }

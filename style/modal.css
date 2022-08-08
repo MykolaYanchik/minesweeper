@@ -8,6 +8,7 @@
   display: none;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
   z-index: 3;
 }
 
@@ -15,4 +16,14 @@
   font-weight: 700;
   font-size: 3rem;
   user-select: none;
+}
+
+.modal-button {
+  padding: 1rem 2rem;
+  background-color: white;
+  border-radius: .5rem;
+  border: none;
+  margin-top: 1rem;
+  font-size: 1.25rem;
+  cursor: pointer;
 }

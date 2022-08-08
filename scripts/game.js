@@ -20,7 +20,9 @@ const levels = {
 };
 
 let currentLevel = "";
-let currentMode = "";
+function touchDevice() {
+  return "ontouchstart" in window;
+}
 
 class Game {
   constructor(level, mode) {
@@ -132,16 +134,7 @@ class Game {
         btnFlag.classList.add("touch-button-flag");
         cell.append(btn, btnFlag);
         cell.id = matrix[x][y].id;
-        if (mode === "mouse") {
-          cell.addEventListener("click", (e) => {
-            e.preventDefault();
-            this.showCell(matrix[x][y], matrix);
-          });
-          cell.addEventListener("contextmenu", (e) => {
-            e.preventDefault();
-            this.setFlag(matrix[x][y]);
-          });
-        } else {
+        if (touchDevice()) {
           cell.addEventListener("click", (e) => {
             e.preventDefault();
             this.showTouchCell(matrix[x][y], matrix, btn, btnFlag);
@@ -156,6 +149,15 @@ class Game {
               this.setFlag(matrix[x][y]);
             });
           });
+        } else {
+          cell.addEventListener("click", (e) => {
+            e.preventDefault();
+            this.showCell(matrix[x][y], matrix);
+          });
+          cell.addEventListener("contextmenu", (e) => {
+            e.preventDefault();
+            this.setFlag(matrix[x][y]);
+          });
         }
         row.append(cell);
       }
@@ -165,13 +167,13 @@ class Game {
   showTouchCell(cell, matrix, btn, btnFlag) {
     const el = document.getElementById(cell.id);
     let pulseCell = false;
-    for(let x = 0; x < matrix.length; x++){
-      for(let y = 0; y < matrix[x].length; y++){
+    for (let x = 0; x < matrix.length; x++) {
+      for (let y = 0; y < matrix[x].length; y++) {
         const q = document.getElementById(matrix[x][y].id);
-        if(q.classList.contains("pulse")) pulseCell = true;
+        if (q.classList.contains("pulse")) pulseCell = true;
       }
     }
-    if(el.classList.contains("show-cell") || pulseCell) return;
+    if (el.classList.contains("show-cell") || pulseCell) return;
     el.classList.add("pulse");
     if (cell.x <= 2 && cell.y <= 2) {
       btn.classList.add("touch-button__bottom");
@@ -212,7 +214,10 @@ class Game {
     } else {
       cell.flag = true;
       el.classList.add("cell-flag");
+      if (cell.flag && cell.mine)
+        document.getElementById("flagCount").textContent--;
     }
+    this.winGame();
   }
 
   loseGame(mines) {
@@ -227,17 +232,32 @@ class Game {
       }, i * 100);
     }
   }
+
+  winGame() {
+    if (document.getElementById("flagCount").textContent == 0) {
+      document.getElementById("winModal").style.display = "flex";
+    }
+  }
 }
 
 function selectLevel(level) {
   document.getElementById("selectLevel").style.display = "none";
-  document.getElementById("selectMode").style.display = "flex";
+  document.getElementById("board").style.display = "flex";
   currentLevel = level;
+  new Game(levels[currentLevel]);
+  document.getElementById("flagCount").textContent = levels[currentLevel].mines;
 }
 
-function selectMode(mode) {
-  document.getElementById("selectMode").style.display = "none";
-  document.getElementById("board").style.display = "flex";
-  currentMode = mode;
-  new Game(levels[currentLevel], currentMode);
+function retry(){
+  document.getElementById("loseModal").style.display = "none";
+  document.getElementById("board").innerHTML = "";
+  new Game(levels[currentLevel]);
+  document.getElementById("flagCount").textContent = levels[currentLevel].mines;
+}
+
+function playAgain(){
+  document.getElementById("board").innerHTML = "";
+  document.getElementById("winModal").style.display = "none";
+  document.getElementById("selectLevel").style.display = "flex";
+  document.getElementById("board").style.display = "none";
 }
