@@ -31,7 +31,7 @@
         <h1 class="header__title">Minesweeper</h1>
       </header>
       <div class="game-container">
-        <div class="select-level" id="selectLevel">
+        <div class="select-level" id="selectLevel" >
           <button class="level-button" onclick="selectLevel('easy')">
             <span>8 * 8</span>
             <span>10 mines</span>
@@ -44,6 +44,16 @@
             <span>30 * 16</span>
             <span>75 mines</span>
           </button>
+        </div>
+        <div class="game-mode" id="selectMode">
+          <div class="game-mode__select" onclick="selectMode('mouse')">
+            <span class="game-mode__title">If you are using a mouse, select this mode</span>
+            <img src="./assets/mouse.png" alt="Mouse mode" class="game-mode__img"/>
+          </div>
+          <div class="game-mode__select" onclick="selectMode('touch')">
+            <span class="game-mode__title">If you are using a touch screen, select this mode</span>
+            <img src="./assets/touch-screen.png" alt="Touch Screen mode" class="game-mode__img" />
+          </div>
         </div>
         <div class="board" id="board"></div>
         <div class="modal" id="loseModal">
