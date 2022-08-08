@@ -174,7 +174,10 @@
   }
 }
 
-.pulse > .touch-button,.pulse > .touch-button-flag {
+.pulse > .touch-button {
+  display: block;
+}
+.pulse > .touch-button-flag {
   display: block;
 }
 
@@ -190,6 +193,7 @@
   background-size: 80%;
   background-repeat: no-repeat;
   display: none;
+  box-shadow: 1px 1px 1px rgb(148, 148, 148), -1px -1px 1px rgb(148, 148, 148);
 }
 
 .touch-button {

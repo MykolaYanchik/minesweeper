@@ -126,6 +126,11 @@ class Game {
       for (let y = 0; y < matrix[x].length; y++) {
         const cell = document.createElement("div");
         cell.classList.add("board__cell");
+        const btn = document.createElement("div");
+        btn.classList.add("touch-button");
+        const btnFlag = document.createElement("div");
+        btnFlag.classList.add("touch-button-flag");
+        cell.append(btn, btnFlag);
         cell.id = matrix[x][y].id;
         if (mode === "mouse") {
           cell.addEventListener("click", (e) => {
@@ -137,37 +142,46 @@ class Game {
             this.setFlag(matrix[x][y]);
           });
         } else {
-          cell.addEventListener("click", () => {
-            if (matrix[x][y].show) return;
-            cell.classList.add("pulse");
-            const btn = document.createElement("div");
-            btn.classList.add("touch-button");
-            const btnFlag = document.createElement("div");
-            btnFlag.classList.add("touch-button-flag");
-            if (x < 2 && y < 2) {
-              btn.classList.add("touch-button__bottom");
-              btnFlag.classList.add("touch-button-flag__bottom");
-            } else if (x < 2 && y > 2) {
-              btn.classList.add("touch-button__right");
-              btnFlag.classList.add("touch-button-flag__right");
-            } else if (x > 2 && y < 2) {
-              btn.classList.add("touch-button__left");
-              btnFlag.classList.add("touch-button-flag__left");
-            }
-            cell.appendChild(btn);
-            cell.appendChild(btnFlag);
-            btn.onclick = () => {
+          cell.addEventListener("click", (e) => {
+            e.preventDefault();
+            this.showTouchCell(matrix[x][y], matrix, btn, btnFlag);
+            btn.addEventListener("click", (e) => {
+              e.stopImmediatePropagation();
               cell.classList.remove("pulse");
               this.showCell(matrix[x][y], matrix);
-            };
-            btnFlag.onclick = () => {
+            });
+            btnFlag.addEventListener("click", (e) => {
+              e.stopImmediatePropagation();
               cell.classList.remove("pulse");
               this.setFlag(matrix[x][y]);
-            };
+            });
           });
         }
         row.append(cell);
       }
+    }
+  }
+
+  showTouchCell(cell, matrix, btn, btnFlag) {
+    const el = document.getElementById(cell.id);
+    let pulseCell = false;
+    for(let x = 0; x < matrix.length; x++){
+      for(let y = 0; y < matrix[x].length; y++){
+        const q = document.getElementById(matrix[x][y].id);
+        if(q.classList.contains("pulse")) pulseCell = true;
+      }
+    }
+    if(el.classList.contains("show-cell") || pulseCell) return;
+    el.classList.add("pulse");
+    if (cell.x <= 2 && cell.y <= 2) {
+      btn.classList.add("touch-button__bottom");
+      btnFlag.classList.add("touch-button-flag__bottom");
+    } else if (cell.x <= 2 && cell.y >= 2) {
+      btn.classList.add("touch-button__right");
+      btnFlag.classList.add("touch-button-flag__right");
+    } else if (cell.x >= 2 && cell.y <= 2) {
+      btn.classList.add("touch-button__left");
+      btnFlag.classList.add("touch-button-flag__left");
     }
   }
 
