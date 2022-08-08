@@ -19,7 +19,6 @@ const levels = {
   },
 };
 
-let currentLevel = "";
 function touchDevice() {
   return "ontouchstart" in window;
 }
@@ -243,21 +242,14 @@ class Game {
 function selectLevel(level) {
   document.getElementById("selectLevel").style.display = "none";
   document.getElementById("board").style.display = "flex";
-  currentLevel = level;
-  new Game(levels[currentLevel]);
-  document.getElementById("flagCount").textContent = levels[currentLevel].mines;
-}
-
-function retry(){
-  document.getElementById("loseModal").style.display = "none";
-  document.getElementById("board").innerHTML = "";
-  new Game(levels[currentLevel]);
-  document.getElementById("flagCount").textContent = levels[currentLevel].mines;
+  new Game(levels[level]);
+  document.getElementById("flagCount").textContent = levels[level].mines;
 }
 
 function playAgain(){
   document.getElementById("board").innerHTML = "";
   document.getElementById("winModal").style.display = "none";
+  document.getElementById("loseModal").style.display = "none";
   document.getElementById("selectLevel").style.display = "flex";
   document.getElementById("board").style.display = "none";
 }
