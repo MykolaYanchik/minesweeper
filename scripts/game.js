@@ -137,47 +137,38 @@ class Game {
             this.setFlag(matrix[x][y]);
           });
         } else {
-          cell.addEventListener("click", (e) => {
-            e.preventDefault();
-            this.showCellTouch(matrix[x][y], matrix);
+          cell.addEventListener("click", () => {
+            if (matrix[x][y].show) return;
+            cell.classList.add("pulse");
+            const btn = document.createElement("div");
+            btn.classList.add("touch-button");
+            const btnFlag = document.createElement("div");
+            btnFlag.classList.add("touch-button-flag");
+            if (x < 2 && y < 2) {
+              btn.classList.add("touch-button__bottom");
+              btnFlag.classList.add("touch-button-flag__bottom");
+            } else if (x < 2 && y > 2) {
+              btn.classList.add("touch-button__right");
+              btnFlag.classList.add("touch-button-flag__right");
+            } else if (x > 2 && y < 2) {
+              btn.classList.add("touch-button__left");
+              btnFlag.classList.add("touch-button-flag__left");
+            }
+            cell.appendChild(btn);
+            cell.appendChild(btnFlag);
+            btn.onclick = () => {
+              cell.classList.remove("pulse");
+              this.showCell(matrix[x][y], matrix);
+            };
+            btnFlag.onclick = () => {
+              cell.classList.remove("pulse");
+              this.setFlag(matrix[x][y]);
+            };
           });
         }
         row.append(cell);
       }
     }
-  }
-
-  showCellTouch(cell, matrix) {
-    if (cell.show) return;
-    const el = document.getElementById(cell.id);
-    el.classList.add("pulse");
-    const btn = document.createElement("div");
-    btn.classList.add("touch-button");
-    const btnFlag = document.createElement("div");
-    btnFlag.classList.add("touch-button-flag");
-    if (cell.x < 2 && cell.y < 2) {
-      btn.classList.add("touch-button__bottom");
-      btnFlag.classList.add("touch-button-flag__bottom");
-    } else if (cell.x < 2 && cell.y > 2) {
-      btn.classList.add("touch-button__right");
-      btnFlag.classList.add("touch-button-flag__right");
-    } else if (cell.x > 2 && cell.y < 2) {
-      btn.classList.add("touch-button__left");
-      btnFlag.classList.add("touch-button-flag__left");
-    }
-    el.appendChild(btn);
-    el.appendChild(btnFlag);
-
-    btn.onclick = () => {
-      el.classList.remove("pulse");
-      el.innerHTML = "";
-      this.showCell(cell, matrix);
-    };
-    btnFlag.onclick = () => {
-      el.classList.remove("pulse");
-      el.innerHTML = "";
-      this.setFlag(cell);
-    };
   }
 
   showCell(cell, matrix) {
